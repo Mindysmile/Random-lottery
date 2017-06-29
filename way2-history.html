@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="button" value="35选7" id="input1"/>
+<div id="div1"></div>
+<script>
+
+    var oDiv=document.getElementById("div1");
+    var oInput=document.getElementById("input1");
+    var obj={};
+    var now=1;
+    oInput.onclick=function(){
+
+        var num=randomNum(35,7);
+        oDiv.innerHTML=num;
+        history.pushState(num,"",now++);
+
+    }
+    window.onpopstate=function(ev){
+        var number=ev.state||"";
+        oDiv.innerHTML=number;
+    }
+    function randomNum(all,now){
+        var arr=[];
+        var newArr=[];
+        for(var i=1;i<=all;i++){
+
+            arr.push(i);
+        }
+        for(var i=0;i<now;i++){
+
+            newArr.push(arr.splice(Math.floor(Math.random()*arr.length),1));
+            //console.log(Math.random()*arr.length);
+            console.log(arr.splice(Math.floor(Math.random()*arr.length),1));
+        }
+        return newArr;
+    }
+
+</script>
+</body>
+</html>
